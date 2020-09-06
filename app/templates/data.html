@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+
+   <body id="services" class="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+      <!-- LOADER -->
+      <div id="preloader">
+         <div class="loader">
+            <img src="static/images/loader.gif" alt="#" />
+         </div>
+      </div>
+      <!-- END LOADER -->
+      <div class="wrapper">
+
+{% include "navmenu.html" %}
+
+      <div id="content">
+         <!-- Start header -->
+         <header class="top-header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-6">
+                     <div class="logo_main">
+                        <a href="/"><img src="static/images/home2.png" /></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="static/images/menu_icon.png"></button>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <!-- End header -->
+         <!-- section -->
+         <!-- section -->
+         <div class="section about_section layout_padding padding_top_0">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="full">
+                        <div class="heading_main text_align_center">
+                           <h2 class="margin-bottom_30"><strong class="small theme_color">Access to our database?</strong><br>Sure, explore it and find specificaly what you are looking for!</h2>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="container data">
+
+                  <div class="row">
+                      <div class="col-sm-12">
+                          <div class="card bg-light border-dark table" style="width: 100%;">
+                              <div class="card-body">
+                                  <form>
+                                      <div class="form-group">
+                                          <label for="Select1">Select state</label>
+                                          <select class="form-control" id="State"></select>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="Select2">Select Municipality</label>
+                                          <select class="form-control" id="Municipality"></select>
+                                      </div>
+
+                                      <div class="col text-center">
+                                       <button id="button" class="btn btn-primary btn-sm" type="submit" style="padding: 2px;"> Filter table</button>
+                                       <button id="buttonClear" class="btn btn-primary btn-sm" style="padding: 2px;"> Reset</button>
+                                   </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <table class="table table-striped table-hover table-responsive">
+                              <thead>
+                                  <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Estados</th>
+                                      <th scope="col">Municipio</th>
+                                      <th scope="col">Colonia</th>
+                                      <th scope="col">Calle</th>
+                                      <th scope="col">Descripcion</th>
+                                      <th scope="col">Precio</th>
+                                      <th scope="col">Url</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="tableContent">
+                                 {% for house in houses %}
+                                    {% include '_house.html' %}
+                                 {% endfor %} 
+                              </tbody>
+                          </table>
+
+                          {% if prev_url %}
+                          <a href="{{ prev_url }}">Back</a>
+                          {% endif %}
+                          {% if next_url %}
+                          <a href="{{ next_url }}">Next</a>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+              
+                </div>
+               </div>
+            </div>
+         </div>
+
+         <script src="staticss/js/table.js"></script>
+
+
+   {% endblock %}

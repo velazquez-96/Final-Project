@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+   <body id="services" class="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+      <!-- LOADER -->
+      <div id="preloader">
+         <div class="loader">
+            <img src="static/images/loader.gif" alt="#" />
+         </div>
+      </div>
+      <!-- END LOADER -->
+      <div class="wrapper">
+{% include "navmenu.html" %}
+      <div id="content">
+         <!-- Start header -->
+         <header class="top-header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-6">
+                     <div class="logo_main">
+                        <a href="/"><img src="static/images/home2.png" /></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="static/images/menu_icon.png"></button>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <!-- End header -->
+         <!-- section -->
+         <!-- section -->
+         <div class="section about_section layout_padding padding_top_0">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="full">
+                        <div class="heading_main text_align_center">
+                           <h2 class="margin-bottom_30"><strong class="small theme_color">Megalopolis MAP</strong><br>Choose your the layer that shows the information you need!</h2>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               </div>
+               <div id="map" class="col-md-12">
+
+               </div>
+            </div>
+         </div>
+
+         <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+         <script type="text/javascript" src="static/js/config.js"></script>
+         <script type="text/javascript" src="static/js/logic.js"></script>
+         <script type="text/javascript" src="static/js/choropleth.js"></script>
+{% endblock %}

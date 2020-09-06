@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+
+   <body id="services" class="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+      <!-- LOADER -->
+      <div id="preloader">
+         <div class="loader">
+            <img src="static/images/loader.gif" alt="#" />
+         </div>
+      </div>
+      <!-- END LOADER -->
+      <div class="wrapper">
+         
+{% include "navmenu.html" %}
+
+      <div id="content">
+         <!-- Start header -->
+         <header class="top-header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-6">
+                     <div class="logo_main">
+                        <a href="/"><img src="static/images/home2.png" /></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6">
+                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="static/images/menu_icon.png"></button>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <!-- End header -->
+         <!-- section -->
+         <!-- section -->
+         <div class="section about_section layout_padding padding_top_0">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="full">
+                        <div class="heading_main text_align_center">
+                           <h2 class="margin-bottom_30"><strong class="small theme_color">What is Homepare</strong><br>Your favorite Home Adviser!</h2>
+                        </div>
+                        <div class="full">
+                           <div class="heading_small">
+                             <h4>Homepare it`s an app thinked and designed, for those looking for the best price/value for their next home.</h4>
+                           </div>
+                           <div class="heading_small">
+                             <h3>How it works?.</h3>
+                           </div>
+                             <p>We scrapped the available houses in the Megalopolis ( CDMX - EDOMEX - Tlaxcala - Puebla - Morelos - Hidalgo) and create a DataBase on Heroku.</p>
+                             <p>Save the economic datset of Megalopolis obtained by INEGI in Heroku.</p>
+                             <p>The app will crossreference the information with the official economic data from INEGI so you can have the options of reviewing and compare between regions.</p>
+                             <p>With the querys requested the app will deploy the information of each municipality so you can see and/or compare per municipality things like.</p>
+                             <ul>
+                               <li>Average Price for Houses</li>
+                               <li>Properties vailable</li>
+                               <li>Average Price per M2</li>
+                               <li>Average No. of Beedrooms</li>
+                               <li>Development indexes, such as:</li>
+                               <ul>
+                                 <li>HDI</li>
+                                 <li>Income</li>
+                                 <li>Health</li>
+                                 <li>Education</li>
+                               </ul>
+                               <li>Maps that will make you see in a bigger picture the data obtained.</li>
+                             </ul>
+                         </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+               </div>
+            </div>
+         </div>
+         <!-- end section -->
+         
+         <!-- section -->
+         <div class="section about_section layout_padding padding_top_0">
+            <div class="container">
+
+
+            </div>
+         </div>
+
+
+{% endblock %}

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial page</title>
+
+    <link rel="stylesheet" href="static/css/style_x.css">
+
+    <!-- Leaflet's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <!-- Javascript -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <!-- D3 -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Bootstrap CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center mb-4">
+            <div class="col-md-6 text-center mb-4">
+                <button type="button" class="btn btn-secondary btn-lg" id="Single">Check one</button>
+            </div>
+            <div class="col-md-6 text-center mb-4">
+                <button type="button" class="btn btn-secondary btn-lg" id="Compare">Compare</button>
+            </div>
+        </div>
+        <div class="section1">
+            <div class="box">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card border-dark">
+                            <div class="card-header border-dark">
+                                State
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="State">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card border-dark">
+                            <div class="card-header border-dark">
+                                Municipality
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="Municipality"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 dol-sm-12 d-flex align-items-center mb-4">
+                        <button type="button" class="btn btn-outline-dark " id="Search">
+                            <i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 mb-4">
+                    <div id="name"></div>
+                </div>
+            </div>
+            <div class="row h-100">
+                <div class="col-md-6 col-sm-12 mb-4 h-100">
+                    <div class="row h-100">
+                        <div class="col-md-6 col-lg-6 mb-3 text-center h-100">
+                            <div class="info-card">
+                                <div class="card  w-100 d-flex">
+                                    <div class="card-body">
+                                        <i class="fas fa-home" style="font-size: 25px;"></i>
+                                        <h5 class="card-title mb-4 mt-2">No. of Properties for sale</h5>
+                                        <div id="gauge1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 text-center h-100">
+                            <div class="info-card">
+                                <div class="card w-100 d-flex">
+                                    <div class="card-body">
+                                        <i class="fas fa-dollar-sign" style="font-size: 25px"></i>
+                                        <h5 class="card-title mb-4 mt-2">Average Price</h5>
+                                        <div id="gauge2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 mt-3 h-100 text-center">
+                            <div class="info-card">
+                                <div class="card w-100 d-flex">
+                                    <div class="card-body">
+                                        <i class="fas fa-warehouse" style="font-size: 25px"></i>
+                                        <h5 class="card-title mb-4 mt-2">Average Total Surface</h5>
+                                        <div id="gauge3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 mt-3 h-100 text-center">
+                            <div class="info-card">
+                                <div class="card w-100 d-flex">
+                                    <div class="card-body">
+                                        <i class="fas fa-hand-holding-usd" style="font-size: 25px"></i>
+                                        <h5 class="card-title mb-4 mt-2">Price per square meter</h5>
+                                        <div id="gauge4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 w-100 text-center">
+                    <div class="info-card">
+                        <div class="card w-100">
+                            <h5 class="card-header">Price vs Human Development Index</h5>
+                            <div class="card-body">
+                                <div id="Bubble"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Espaciador -->
+            <div class="row">
+                <a href="index.html"><img src="" /></a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="info-card" id="cardBubble">
+                        <div class="card w-100">
+                            <h5 class="card-header">Development Indicators</h5>
+                            <div class="card-body">
+                                <div id="barSingle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="info-card">
+                        <div class="card w-100">
+                            <h5 class="card-header">Average House Spaces</h5>
+                            <div class="card-body">
+                                <table class="table mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Bedrooms</td>
+                                            <td class="text-right" id="Bedrooms"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bathrooms</td>
+                                            <td class="text-right" id="Bathrooms">2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Parking lots</td>
+                                            <td class="text-right" id="Parking">2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section2">
+            <div class="box sticky-top">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card border-dark sticky-top">
+                            <div class="card-header border-dark">
+                                State 1
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="State1">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-dark sticky-top">
+                            <div class="card-header border-dark">
+                                Municipality 1
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="Municipality1">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-dark sticky-top">
+                            <div class="card-header border-dark">
+                                State 2
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="State2">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card border-dark sticky-top">
+                            <div class="card-header border-dark">
+                                Municipality 2
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="form-group">
+                                        <select class="form-control" id="Municipality2">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 dol-sm-12 mt-3">
+                        <button type="button" class="btn btn-outline-dark " id="SearchComp">
+                            <i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 mb-4">
+                <div id="nameData"></div>
+            </div>
+        </div>
+
+        <div class="row h-100">
+            <div class="col-md-6 col-sm-12 mb-4 h-100">
+                <div class="row h-100">
+                    <div class="col-md-6 col-lg-6 mb-3 text-center h-100">
+                        <div class="info-card-2">
+                            <div class="card  w-100 d-flex">
+                                <div class="card-body">
+                                    <i class="fas fa-home" style="font-size: 25px;"></i>
+                                    <h5 class="card-title mb-4 mt-2">No. of Properties for sale</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp1"></div>
+                                            Option 1
+                                            <div id="dataComp1"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div id="nameComp2"></div>
+                                            Option 2
+                                            <div id="dataComp2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 text-center h-100">
+                        <div class="info-card-2">
+                            <div class="card w-100 d-flex">
+                                <div class="card-body">
+                                    <i class="fas fa-dollar-sign" style="font-size: 25px"></i>
+                                    <h5 class="card-title mb-4 mt-2">Average Price</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp3"></div>
+                                            Option 1
+                                            <div id="dataComp3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp4"></div>
+                                            Option 2
+                                            <div id="dataComp4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 mt-3 h-100 text-center">
+                        <div class="info-card-2">
+                            <div class="card w-100 d-flex">
+                                <div class="card-body">
+                                    <i class="fas fa-warehouse" style="font-size: 25px"></i>
+                                    <h5 class="card-title mb-4 mt-2">Average Total Surface</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp5"></div>
+                                            Option 1
+                                            <div id="dataComp5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp6"></div>
+                                            <h5>Option 2</h5>
+                                            <div id="dataComp6"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mt-3 h-100 text-center">
+                        <div class="info-card-2">
+                            <div class="card w-100 d-flex">
+                                <div class="card-body">
+                                    <i class="fas fa-hand-holding-usd" style="font-size: 25px"></i>
+                                    <h5 class="card-title mb-4 mt-2">Price per square meter</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp7"></div>
+                                            Option 1
+                                            <div id="dataComp7"></div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="nameComp8"></div>
+                                            Option 2
+                                            <div id="dataComp8"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 w-100 text-center">
+                <div class="info-card-2">
+                    <div class="card w-100">
+                        <h5 class="card-header">Price vs Human Development Index</h5>
+                        <div class="card-body">
+                            <div id="Bubble2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Espaciador -->
+        <div class="row">
+            <a href="index.html"><img src="" /></a>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="info-card-2" id="cardBubbleData">
+                    <div class="card w-100">
+                        <h5 class="card-header">Development Indicators</h5>
+                        <div class="card-body">
+                            <div id="barComp"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="info-card-2">
+                    <div class="card w-100">
+                        <h5 class="card-header">Average House Spaces</h5>
+                        <div class="card-body">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bedrooms</td>
+                                        <td class="text-right" id="BedroomsComp1">3</td>
+                                        <td class="text-right" id="BedroomsComp2">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bathrooms</td>
+                                        <td class="text-right" id="BathroomsComp1">2</td>
+                                        <td class="text-right" id="BathroomsComp2">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Parking lots</td>
+                                        <td class="text-right" id="ParkingComp1">2</td>
+                                        <td class="text-right" id="ParkingComp2">2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/js/app2.js"></script>
+
+</body>
+
+</html>
